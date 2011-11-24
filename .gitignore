@@ -2,3 +2,13 @@ CMakeCache.txt
 CMakeFiles/*
 cmake_install.txt
 Makefile
+*.swp
+
+pda/CMakeFiles/*
+pda/*.swp
+
+decl/CMakeFiles/*
+decl/Makefile
+decl/CMakeCache.txt
+decl/cmake_install.cmake
+decl/*.swp
