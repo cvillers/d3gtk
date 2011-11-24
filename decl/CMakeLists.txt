@@ -6,6 +6,7 @@ include_directories(
 
 add_executable(
 	decl
+	main.cpp
 	decl.cpp
 	decl.h)
 

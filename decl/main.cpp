@@ -17,5 +17,5 @@ int main(int argc, char **argv)
 
 	wireMainWindow();
 
-	Gtk::Main::run(mainWindow);
+	Gtk::Main::run(*mainWindow);
 }
