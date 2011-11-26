@@ -1,12 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <requires lib="gtk+" version="2.24"/>
+  <!-- interface-requires gtksourceview 2.10 -->
   <!-- interface-naming-policy project-wide -->
   <object class="GtkImage" id="browseImage">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="xpad">2</property>
     <property name="stock">gtk-find</property>
+  </object>
+  <object class="GtkWindow" id="declEditor">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Declaration Editor</property>
+    <child>
+      <object class="GtkVBox" id="vbox3">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkSourceView" id="declSourceView">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="left_margin">2</property>
+            <property name="right_margin">2</property>
+            <property name="tab_width">4</property>
+            <property name="auto_indent">True</property>
+            <property name="indent_on_tab">False</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHButtonBox" id="hbuttonbox2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkButton" id="editor_testButton">
+                <property name="label" translatable="yes">Test</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="image">testImage</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="editor_saveButton">
+                <property name="label">gtk-save</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="editor_cancelButton">
+                <property name="label">gtk-cancel</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="padding">2</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
   </object>
   <object class="GtkListStore" id="declStore">
     <columns>
@@ -24,8 +108,7 @@
         <property name="can_focus">False</property>
         <property name="spacing">2</property>
         <child>
-          <object class="GtkTreeView" id="treeview1">
-            <property name="height_request">370</property>
+          <object class="GtkTreeView" id="declTree">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="model">declStore</property>
@@ -33,6 +116,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
+            <property name="padding">2</property>
             <property name="position">0</property>
           </packing>
         </child>
@@ -112,7 +196,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkButton" id="findButton">
+              <object class="GtkButton" id="browser_findButton">
                 <property name="label">gtk-find</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -127,7 +211,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="editButton">
+              <object class="GtkButton" id="browser_editButton">
                 <property name="label">gtk-edit</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -142,7 +226,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="addButton">
+              <object class="GtkButton" id="browser_addButton">
                 <property name="label">gtk-add</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -157,7 +241,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="reloadButton">
+              <object class="GtkButton" id="browser_reloadButton">
                 <property name="label">gtk-refresh</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -175,7 +259,7 @@
               <placeholder/>
             </child>
             <child>
-              <object class="GtkButton" id="closeButton">
+              <object class="GtkButton" id="browser_closeButton">
                 <property name="label">gtk-close</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -339,7 +423,7 @@
             <property name="spacing">2</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="okButton">
+              <object class="GtkButton" id="new_okButton">
                 <property name="label">gtk-ok</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -354,7 +438,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="cancelButton">
+              <object class="GtkButton" id="new_cancelButton">
                 <property name="label">gtk-cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
@@ -378,5 +462,10 @@
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkImage" id="testImage">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
   </object>
 </interface>
