@@ -1,4 +1,7 @@
 #include "decl.h"
+#include <iostream>
+
+using namespace std;
 
 /*
  * Entry point.
@@ -13,7 +16,15 @@ int main(int argc, char **argv)
 {
 	Gtk::Main _main(argc, argv);
 
-	gladeBuilder = Gtk::Builder::create_from_file("decl.glade");
+	try
+	{
+		gladeBuilder = Gtk::Builder::create_from_file("./decl.glade");
+	}
+	catch(Gtk::BuilderError &e)
+	{
+		cout << "ERROR: " << e.what() << endl;
+		return 1;
+	}
 
 	wireMainWindow();
 
