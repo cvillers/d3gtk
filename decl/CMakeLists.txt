@@ -1,8 +1,10 @@
 link_directories(
-	${GTKMM_LIBRARY_DIRS})
+	${GTKMM_LIBRARY_DIRS}
+	${GTKSOURCEVIEWMM_LIBRARY_DIRS})
 
 include_directories(
-	${GTKMM_INCLUDE_DIRS})
+	${GTKMM_INCLUDE_DIRS}
+	${GTKSOURCEVIEWMM_INCLUDE_DIRS})
 
 add_executable(
 	decl
@@ -12,4 +14,5 @@ add_executable(
 
 target_link_libraries(
 	decl
-	${GTKMM_LIBRARIES})
+	${GTKMM_LIBRARIES}
+	${GTKSOURCEVIEWMM_LIBRARIES})
