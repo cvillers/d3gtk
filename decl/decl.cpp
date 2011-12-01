@@ -2,21 +2,24 @@
 
 Glib::RefPtr<Gtk::Builder> gladeBuilder;
 
-// these macros assume the name in the glade file and the member name
-// are identical
+#define WIRE_WIDGET_NAMED(gladeName, name)		\
+	gladeBuilder->get_widget(gladeName, name)
 
-#define WIRE_WIDGET(name)		\
-	gladeBuilder->get_widget(#name, name)
+#define WIRE_WIDGET(name)				\
+	WIRE_WIDGET_NAMED(#name, name)
 
-#define WIDGET_CLICK(className, name, handler)		\
+#define WIDGET_CLICK_NAMED(className, gladeName, name, handler)		\
 	if(!name)					\
-		WIRE_WIDGET(name);			\
+		WIRE_WIDGET_NAMED(gladeName, name);			\
 	if(name)					\
 		name->signal_clicked()			\
 			.connect(			\
 				sigc::mem_fun(		\
 					*this,		\
 					&className::handler))
+
+#define WIDGET_CLICK(className, name, handler)		\
+	WIDGET_CLICK_NAMED(className, #name, name, handler)
 
 // maybe these should be subclasses instead of encapsulating gtk windows?
 
@@ -51,6 +54,7 @@ private:
 	Gtk::Button *browseButton, *okButton, *cancelButton;
 	Gtk::Entry *nameEntry, *fileEntry;
 	Gtk::ComboBox *typeList;
+	Gtk::ListStore *typeStore;
 	std::string filename;
 
 	void wire()
@@ -68,13 +72,14 @@ private:
 		//cancelButton->signal_clicked().connect(sigc::mem_fun(*this,
 		//	&newDeclWindow::cancelButton_clicked));
 	
-		WIRE_WIDGET(nameEntry);
-		WIRE_WIDGET(fileEntry);
-		WIRE_WIDGET(typeList);
+		WIRE_WIDGET_NAMED("new_nameEntry", nameEntry);
+		WIRE_WIDGET_NAMED("new_fileEntry", fileEntry);
+		WIRE_WIDGET_NAMED("new_typeList", typeList);
+		WIRE_WIDGET(typeStore);
 
-		WIDGET_CLICK(newDeclWindow, browseButton, browseButton_clicked);
-		WIDGET_CLICK(newDeclWindow, okButton, okButton_clicked);
-		WIDGET_CLICK(newDeclWindow, cancelButton, cancelButton_clicked);
+		WIDGET_CLICK_NAMED(newDeclWindow, "new_browseButton", browseButton, browseButton_clicked);
+		WIDGET_CLICK_NAMED(newDeclWindow, "new_okButton", okButton, okButton_clicked);
+		WIDGET_CLICK_NAMED(newDeclWindow, "new_cancelButton", cancelButton, cancelButton_clicked);
 	}
 
 	/****************
@@ -123,6 +128,7 @@ static newDeclWindow *_newDeclWindow = 0;
 
 Gtk::Window *mainWindow = 0;
 static Gtk::Button *addButton = 0;
+static Gtk::ListStore *declStore = 0;
 
 static void addButton_clicked()
 {
@@ -140,7 +146,8 @@ void wireMainWindow()
 {
 	gladeBuilder->get_widget("declBrowser", mainWindow);
 
-	gladeBuilder->get_widget("addButton", addButton);
+	gladeBuilder->get_widget("browser_addButton", addButton);
+	WIRE_WIDGET(declStore);
 
 	if(addButton)	// TODO exceptions
 	{

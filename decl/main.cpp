@@ -15,6 +15,7 @@ using namespace std;
 int main(int argc, char **argv)
 {
 	Gtk::Main _main(argc, argv);
+	gtksourceview::init();
 
 	try
 	{

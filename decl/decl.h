@@ -1,5 +1,6 @@
 #include <gtkmm.h>
 #include <gtkmm/filechooserdialog.h>
+#include <gtksourceviewmm.h>
 
 extern Glib::RefPtr<Gtk::Builder> gladeBuilder;
 

@@ -309,7 +309,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="nameEntry">
+              <object class="GtkEntry" id="new_nameEntry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -342,7 +342,7 @@
                 <property name="can_focus">False</property>
                 <property name="spacing">2</property>
                 <child>
-                  <object class="GtkEntry" id="fileEntry">
+                  <object class="GtkEntry" id="new_fileEntry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="invisible_char">●</property>
@@ -358,7 +358,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="browseButton">
+                  <object class="GtkButton" id="new_browseButton">
                     <property name="label" translatable="yes">Browse...</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
@@ -396,9 +396,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkComboBox" id="typeList">
+              <object class="GtkComboBox" id="new_typeList">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="model">typeStore</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -467,5 +468,11 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkListStore" id="typeStore">
+    <columns>
+      <!-- column-name name -->
+      <column type="gchararray"/>
+    </columns>
   </object>
 </interface>
