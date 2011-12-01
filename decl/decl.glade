@@ -9,95 +9,6 @@
     <property name="xpad">2</property>
     <property name="stock">gtk-find</property>
   </object>
-  <object class="GtkWindow" id="declEditor">
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Declaration Editor</property>
-    <child>
-      <object class="GtkVBox" id="vbox3">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <child>
-          <object class="GtkSourceView" id="declSourceView">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="left_margin">2</property>
-            <property name="right_margin">2</property>
-            <property name="tab_width">4</property>
-            <property name="auto_indent">True</property>
-            <property name="indent_on_tab">False</property>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkHButtonBox" id="hbuttonbox2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkButton" id="editor_testButton">
-                <property name="label" translatable="yes">Test</property>
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="image">testImage</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="editor_saveButton">
-                <property name="label">gtk-save</property>
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="editor_cancelButton">
-                <property name="label">gtk-cancel</property>
-                <property name="use_action_appearance">False</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="padding">2</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkListStore" id="declStore">
-    <columns>
-      <!-- column-name name -->
-      <column type="gchararray"/>
-    </columns>
-  </object>
   <object class="GtkWindow" id="declBrowser">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Declaration browser</property>
@@ -111,7 +22,6 @@
           <object class="GtkTreeView" id="declTree">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="model">declStore</property>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -283,6 +193,89 @@
       </object>
     </child>
   </object>
+  <object class="GtkWindow" id="declEditor">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Declaration Editor</property>
+    <child>
+      <object class="GtkVBox" id="vbox3">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkSourceView" id="declSourceView">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="left_margin">2</property>
+            <property name="right_margin">2</property>
+            <property name="tab_width">4</property>
+            <property name="auto_indent">True</property>
+            <property name="indent_on_tab">False</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHButtonBox" id="hbuttonbox2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkButton" id="editor_testButton">
+                <property name="label" translatable="yes">Test</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="image">testImage</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="editor_saveButton">
+                <property name="label">gtk-save</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="editor_cancelButton">
+                <property name="label">gtk-cancel</property>
+                <property name="use_action_appearance">False</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="padding">2</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkWindow" id="newDeclWindow">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">New declaration</property>
@@ -399,7 +392,6 @@
               <object class="GtkComboBox" id="new_typeList">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="model">typeStore</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -468,11 +460,5 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-apply</property>
-  </object>
-  <object class="GtkListStore" id="typeStore">
-    <columns>
-      <!-- column-name name -->
-      <column type="gchararray"/>
-    </columns>
   </object>
 </interface>
